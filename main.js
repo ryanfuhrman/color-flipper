@@ -1,5 +1,9 @@
 const colorSpan = document.querySelector(".color-span");
 const colorBtn = document.querySelector(".color-btn");
+const name = document.querySelector(".name");
+const hex = document.querySelector(".hex");
+
+let colorType = "name";
 
 const colors = [
   { name: "red", hex: "#FF0000" },
@@ -20,4 +24,13 @@ const colors = [
   { name: "olive", hex: "#808000" },
 ];
 
-colorBtn.addEventListener("click", () => {});
+name.addEventListener("click", () => (colorType = "name"));
+hex.addEventListener("click", () => (colorType = "hex"));
+
+colorBtn.addEventListener("click", () => {
+  const randomColor =
+    colors[Math.floor(Math.random() * colors.length)][colorType];
+  console.log(randomColor);
+  colorSpan.innerHTML = randomColor;
+  document.body.style = `background-color: ${randomColor}`;
+});
