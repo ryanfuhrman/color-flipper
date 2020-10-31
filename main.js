@@ -24,13 +24,27 @@ const colors = [
   { name: "olive", hex: "#808000" },
 ];
 
-name.addEventListener("click", () => (colorType = "name"));
-hex.addEventListener("click", () => (colorType = "hex"));
+name.addEventListener("click", () => {
+  colorType = "name";
+  hex.style = `border-bottom: none`;
+  name.style = `border-bottom: 3px solid black`;
+});
+hex.addEventListener("click", () => {
+  colorType = "hex";
+  name.style = `border-bottom: none`;
+  hex.style = `border-bottom: 3px solid black`;
+});
 
 colorBtn.addEventListener("click", () => {
+  changeColor();
+});
+
+function changeColor() {
   const randomColor =
     colors[Math.floor(Math.random() * colors.length)][colorType];
-  console.log(randomColor);
   colorSpan.innerHTML = randomColor;
+  colorSpan.style = `color: ${randomColor}`;
   document.body.style = `background-color: ${randomColor}`;
-});
+}
+
+changeColor();
